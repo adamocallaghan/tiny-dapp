@@ -21,6 +21,10 @@
                 <button class="button" onclick="connectContract()" id="connect">Connect to Smart Contract</button>
                 <h2><span id="contract"></span></h2>
             </div>
+            <div>
+                <button class="button" onclick="readContract()" id="connect">Read from Smart Contract <i>(Should be '0' as not initialised)</i></button>
+                <h2>Number in Contract is: <span id="contractValue"></span></h2>
+            </div>
         </div>
     </body>
     <script>
@@ -47,13 +51,46 @@
 
         // Connect to Smart Contract using Web3.js
         const connectContract = async () => {
-            const ABI = []; // ABI to be entered
-            const Address = ""; // Contract Address to be entered
+            const ABI = [
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "num",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "store",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "retrieve",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            }
+        ]; // ABI
+            const Address = "0xa55bEf93d997A3eE0f96cAC40C6D7b5a6f94f855"; // Contract Address
             window.web3 = await new Web3(window.ethereum);
             console.log(window.web3);
             window.contract = await new window.web3.eth.Contract(ABI, Address);
             console.log(window.contract);
             document.getElementById("contract").innerHTML = "Connected to Smart Contract";
+        }
+
+        // Read the number from the Smart Contract
+        const readContract = async () => {
+            const data = await window.contract.methods.retrieve().call();
+            document.getElementById("contractValue").innerHTML = data;
         }
 
     </script>
