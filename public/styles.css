@@ -6,6 +6,11 @@ body {
 
 button {
     font-family: 'Arimo', sans-serif;
+    background-color: #0a3b4e;
+}
+
+button:hover {
+    background-color: #115874;
 }
 
 #main {
@@ -16,7 +21,6 @@ button {
 }
 
 #connect {
-    background-color: #0a3b4e;
     border: none;
     color: hsl(0, 3%, 81%);
     padding: 15px 32px;
