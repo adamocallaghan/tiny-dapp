@@ -11,4 +11,4 @@ app.get("/", (req, res) => {
 
 const server = app.listen(5000);
 const portNumber = server.address().port;
-console.log("Port: " + portNumber);
+console.log("App listening on http://localhost:" + portNumber);

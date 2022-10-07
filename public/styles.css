@@ -1,35 +1,73 @@
 body {
+    display: grid;
+    height: 100vh;
+    grid-template: auto 1fr auto / auto 1fr auto;
     background-color: rgb(230, 236, 201);
     font-family: 'Prata', serif;
     color: darkslategray;
-}
+  }
+  
+  header {
+    /* background-color: pink; */
+    padding: 2rem;
+    grid-column: 1 / 6;
+  }
 
-button {
-    font-family: 'Arimo', sans-serif;
-    background-color: #0a3b4e;
-}
-
-button:hover {
-    background-color: #115874;
-}
-
-#main {
-    padding: 70px 0;
-    margin: auto;
-    width: 50%;
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .left-sidebar {
+    /* background-color: lightcoral; */
+    grid-column: 1 / 2;
+  }
+  
+  main {
+    /* background-color: lightgreen; */
+    grid-column: 2 / 5;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .right-sidebar {
+    /* background-color: lightseagreen; */
+    grid-column: 5 / 6;
+  }
+  
+  footer {
+    /* background-color: lightgoldenrodyellow; */
+    padding: 2rem;
     text-align: center;
-}
+    grid-column: 1 / 6;
+  }
+  
+  .left-sidebar,
+  .right-sidebar,
+  .main {
+    padding: 1rem;
+  }
+  
+  button {
+      font-family: 'Arimo', sans-serif;
+      background-color: #0a3b4e;
+      border: none;
+      color: hsl(0, 3%, 81%);
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+  }
+  
+  button:hover {
+      background-color: #115874;
+  }
 
-#connect {
-    border: none;
-    color: hsl(0, 3%, 81%);
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-}
-
-#blockchain, #walletAddress {
-    color: #2f3f4f;
-}
+  #title {
+    font-size: 2rem;
+  }
+  #connect {
+    margin-left: 10%;
+  }
