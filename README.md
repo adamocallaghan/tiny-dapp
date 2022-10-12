@@ -8,9 +8,8 @@ A Tiny Dapp built with:
 A 'proof of simplicity' learning exercise.
 
 Vanilla Javascript used to:
-* Detect Metamask
-* Connect Metamask
-* Retrieve Account Address
-* Detect Chain ID
+* Detect + Connect Metamask
+* Retrieve Account Address + Chain ID
+* Read from + Write to Smart Contract
 
 :-)
