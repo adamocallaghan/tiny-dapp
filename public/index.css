@@ -65,6 +65,17 @@ body {
       background-color: #115874;
   }
 
+  input {
+    font-family: 'Arimo', sans-serif;
+    background-color: aliceblue;
+    border-radius: 0%;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+  }
+
   #title {
     font-size: 2rem;
   }

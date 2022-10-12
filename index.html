@@ -6,8 +6,9 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Arimo&family=Prata&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="index.css">
         <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+        <script src="index.js"></script>
     </head>
 
     <body>  
@@ -29,11 +30,15 @@
                 <!-- info -->
                 <h4>Your account is: <span id="walletAddress"></span> and you are connected to: <span id="blockchain"></span></h4>
                 <!-- smart contract-->
-                <button class="button" onclick="connectContract()">Connect to Smart Contract</button>
+                <button onclick="connectContract()">Connect to Smart Contract</button>
                 <h4><span id="contract"></span></h4>
                 <!-- read contract -->
-                <button class="button" onclick="readContract()">Read from Smart Contract</button>
-                <h4>Number in Contract is: <span id="contractValue"></span></h4>
+                <button onclick="readContract()">Favourte pizza is currently: </button><span id="contractValue"></span><br>
+                <!-- write to contract -->
+                <div id="inputDiv">
+                    <button onclick="writeToContract()">What's your favourite pizza: </button><br>
+                    <input type="text" id="favPizza">
+                </div>
             </main>
 
             <!-- RIGHT SIDEBAR -->
@@ -44,85 +49,4 @@
             <footer></footer>
     </body>
 
-    <script>
-        // Connect Metamask - Get Account Address + ChainID
-        let chains = {
-            "0x1": "Ethereum",
-            "0xaa36a7": "Sepolia",
-            "0x3": "Ropsten",
-            "0x4": "Rinkeby",
-            "0x5": "Goerli",
-            "0x2a": "Kovan"
-        }
-        let account;
-        const connectMetamask = async() => {
-            console.log("connectMetamask clicked!");
-            if (window.ethereum !== undefined) {
-                console.log(window.ethereum);
-                const accounts = await ethereum.request({method: "eth_requestAccounts"});
-                const chainId = await ethereum.request({ method: 'eth_chainId' });
-                account = accounts[0];
-                console.log("Your Metamask Address: " + account);
-                console.log("Chain ID: " + chainId);
-                document.getElementById("walletAddress").innerHTML = account;
-                document.getElementById("blockchain").innerHTML = chains[chainId];
-                /*
-                if(chainId == "0x1") {
-                    document.getElementById("blockchain").innerHTML = "Ethereum";
-                } else if (chainId == "0xaa36a7") {
-                    document.getElementById("blockchain").innerHTML = "Sepolia (Testnet)";
-                }
-                */
-            } else if(window.ethereum == undefined) {
-                let noMetamask = "Metamask is not installed";
-                console.log(noMetamask);
-                document.getElementById("walletAddress").innerHTML = noMetamask;
-            }
-        }
-
-        // Connect to Smart Contract using Web3.js
-        const connectContract = async () => {
-            const ABI = [
-            {
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "num",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "store",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "retrieve",
-                "outputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            }
-        ]; // ABI
-            const Address = "0xa55bEf93d997A3eE0f96cAC40C6D7b5a6f94f855"; // Contract Address
-            window.web3 = await new Web3(window.ethereum);
-            console.log(window.web3);
-            window.contract = await new window.web3.eth.Contract(ABI, Address);
-            console.log(window.contract);
-            document.getElementById("contract").innerHTML = "Connected to Smart Contract";
-        }
-
-        // Read the number from the Smart Contract
-        const readContract = async () => {
-            const data = await window.contract.methods.retrieve().call();
-            document.getElementById("contractValue").innerHTML = data;
-        }
-
-    </script>
 </html>
