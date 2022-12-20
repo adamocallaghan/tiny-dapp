@@ -7,7 +7,9 @@
             "0x5": "Goerli",
             "0x2a": "Kovan"
         }
+
         let account;
+
         const connectMetamask = async() => {
             console.log("connectMetamask clicked!");
             if (window.ethereum !== undefined) {
@@ -19,13 +21,6 @@
                 console.log("Chain ID: " + chainId);
                 document.getElementById("walletAddress").innerHTML = account;
                 document.getElementById("blockchain").innerHTML = chains[chainId];
-                /*
-                if(chainId == "0x1") {
-                    document.getElementById("blockchain").innerHTML = "Ethereum";
-                } else if (chainId == "0xaa36a7") {
-                    document.getElementById("blockchain").innerHTML = "Sepolia (Testnet)";
-                }
-                */
             } else if(window.ethereum == undefined) {
                 let noMetamask = "Metamask is not installed";
                 console.log(noMetamask);
@@ -34,6 +29,7 @@
         }
 
         // Connect to Smart Contract using Web3.js
+        // (swap ABI + contract address for your own if you've deployed one)
         const connectContract = async () => {
             const ABI = [
                 {

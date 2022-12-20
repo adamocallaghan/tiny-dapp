@@ -28,17 +28,20 @@
             <!-- MAIN CONTENT -->
             <main>
                 <!-- info -->
-                <h4>Your account is: <span id="walletAddress"></span> and you are connected to: <span id="blockchain"></span></h4>
+                <h4>Account Address: <span id="walletAddress"></span></h4>
+                <h4>Connected to: <span id="blockchain"></span></h4>
                 <!-- smart contract-->
-                <button onclick="connectContract()">Connect to Smart Contract</button>
-                <h4><span id="contract"></span></h4>
+                <button onclick="connectContract()">Connect to Smart Contract</button><span id="contract"></span>
+                <h4></h4>
                 <!-- read contract -->
                 <button onclick="readContract()">Favourte pizza is currently: </button><span id="contractValue"></span><br>
                 <!-- write to contract -->
                 <div id="inputDiv">
-                    <button onclick="writeToContract()">What's your favourite pizza: </button><br>
                     <input type="text" id="favPizza">
+                    <button onclick="writeToContract()">Submit your favourite pizza</button>
                 </div>
+
+
             </main>
 
             <!-- RIGHT SIDEBAR -->
